@@ -1,8 +1,8 @@
-﻿// TestLink.cpp : Defines the exported functions for the DLL application.
+﻿// TemplateLibrary.cpp : Defines the exported functions for the DLL application.
 //
 
 #include "stdafx.h"
-#include "TestLink.h"
+#include "TemplateLibrary.h"
 
 namespace TemplateLibrary
 {
