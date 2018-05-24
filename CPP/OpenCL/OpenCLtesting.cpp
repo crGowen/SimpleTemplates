@@ -1,5 +1,5 @@
 ﻿
-// FIRST THINGS FIRST:
+// FIRST THINGS FIRST (Visual Studio):
 // Add include directory to properties path for the include folder (in NVIDIA GPU Compute)
 // Add 'OpenCL.lib' to the linker>Input>libraries
 // Add the path to lib/x64 to the linker>general additional directories
