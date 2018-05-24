@@ -1,1 +1,1 @@
-Simple implicit linking.
+Simple implicit and explicit linking
