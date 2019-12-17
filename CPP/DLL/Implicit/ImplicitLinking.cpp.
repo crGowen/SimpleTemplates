@@ -1,6 +1,5 @@
 ﻿// ConsoleApplication1.cpp : Defines the entry point for the console application.
 //
-// don't forget that the lib file is required in same directory as header
 
 #include "stdafx.h"
 #include "TemplateLibrary.h"
