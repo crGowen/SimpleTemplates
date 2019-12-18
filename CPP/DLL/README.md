@@ -1,8 +1,6 @@
-Simple implicit and explicit linking:
+Static/Implicit is not fit for distribution and is compiled into a project at load-time. (Also not technically DLL so it shouldn't be in this folder, but whatever)
 
-Implicit (AKA static lib) requires also giving out a .lib and .h files with the DLL file
-
-Explicit linking is harder to code for on both ends, but doesn't require distributing the .h and .lib files
+Explicit linking is harder to code for on both ends, but allows being distributed as a DLL file.
 
 In most projects, it's much easier just to use a managed DLL system like in C#.
 
