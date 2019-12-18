@@ -37,6 +37,10 @@ double CallTempLibAdd(HINSTANCE& hDLL, double a, double b)
 	if (CheckLibLoaded(hDLL))
 	{
 		funcAdd Add = (funcAdd)GetProcAddress(hDLL, "Add");
+		/*
+		Without Typedef:
+			double (*Add)(double, double) = (double (*)(double, double))GetProcAddress(hDLL, "Add"); ??
+		*/
 		if (NULL != Add)
 		{
 			// call the function  
