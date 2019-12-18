@@ -16,4 +16,6 @@ Finally, go to Linker->Input->Additional Dependencies and add the name of the fi
 
 # DYNAMIC LINKING: 
 
-No including, load using LoadLibrary function with a relative filepath to the .dll file, and use the (slightly more unwieldy) explicit linking method.
+No including, load using LoadLibrary function with a relative filepath to the .dll file, and use the (slightly more unwieldy) explicit linking method. There is implicit dynamic linking too, where a .lib file is used to show declarations for a .dll, enabling it to be used more like a static library, however this will load all functions at runtime.
+
+For performance it's better to just use explicit linking, it really isn't that much harder just to use interop-boundary safe variables and load functions with GetProcAddress.
