@@ -10,3 +10,5 @@ var $id = (name) => {return document.getElementById(name)};
 var $class = (clname) => {return document.getElementsByClassName(clname)};
 
 var $del = (elem) => {elem.parentNode.removeChild(elem)};
+
+var $empty = (elem) => {while (elem.childNodes.length > 0) {elem.removeChild(elem.childNodes[0]);}}; 
