@@ -1,14 +1,14 @@
 // shorthand js function declarations
 
-export $h = () => {return document.head};
-export $b = () => {return document.body};
+export function $h() {return document.head;};
+export function $b() {return document.body;};
 
-export $new = (type) => {return document.createElement(type)};
-export $new_id = (type, name) => {var c = document.createElement(type); c.id = name; return c;};
+export function $new(type) {return document.createElement(type);};
+export function $new_id(type, name) {var c = document.createElement(type); c.id = name; return c;};
 
-export $id = (name) => {return document.getElementById(name)};
-export $class = (clname) => {return document.getElementsByClassName(clname)};
+export function $id(name) {return document.getElementById(name);};
+export function $class(clname) {return document.getElementsByClassName(clname);};
 
-export $del = (elem) => {if (elem) elem.parentNode.removeChild(elem)};
+export function $del(elem) {if (elem) elem.parentNode.removeChild(elem);};
 
-export $empty = (elem) => {while (elem.childNodes.length > 0) {elem.removeChild(elem.childNodes[0]);}}; 
+export function $empty(elem) {while (elem.childNodes.length > 0) { elem.removeChild(elem.childNodes[0]);} }; 
