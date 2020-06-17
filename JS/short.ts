@@ -5,14 +5,18 @@ var short = {
 
     b: document.body,
 
-    create: function(...args:string[]) {
-        if (args.length == 1) {
-            return document.createElement(args[0]);
-        } else if (args.length > 1) {
-            let c = document.createElement(args[0]);
-            c.id = args[1];
-            return c;
+    create: function(type:string, id:string, classes:string[]) {
+        let c = document.createElement(type);
+
+        if (id.length > 0) {
+            c.id = id;
         }
+
+        for (let i = 0; i < classes.length; i++) {
+            c.classList.add(classes[i]);
+        }
+
+        return c;
     },
 
     byId: function(name:string) {return document.getElementById(name); },
