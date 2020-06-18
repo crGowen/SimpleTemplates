@@ -5,7 +5,7 @@ var short = {
 
     b: document.body,
 
-    create: function(type:string, id:string, classes:string[]) {
+    create: (type:string, id:string, classes:string[]) => {
         let c = document.createElement(type);
 
         if (id.length > 0) {
@@ -19,13 +19,13 @@ var short = {
         return c;
     },
 
-    byId: function(name:string) {return document.getElementById(name); },
+    byId: (name:string) => {return document.getElementById(name); },
 
-    byClass: function(clname:string) {return document.getElementsByClassName(clname); },
+    byClass: (clname:string) => {return document.getElementsByClassName(clname); },
 
-    del: function(elem:Element) {if (elem) elem.parentNode.removeChild(elem); },
+    del: (elem:Element) => {if (elem) elem.parentNode.removeChild(elem); },
 
-    clearChildren: function(elem:Element) {
+    clearChildren: (elem:Element) => {
         while (elem.childNodes.length > 0) {
             elem.removeChild(elem.childNodes[0]);
         }
