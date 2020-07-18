@@ -1,6 +1,6 @@
 // shorthand js function declarations
 
-var short = {
+const short = {
     h: document.head,
 
     b: document.body,
@@ -29,5 +29,11 @@ var short = {
         while (elem.childNodes.length > 0) {
             elem.removeChild(elem.childNodes[0]);
         }
+    },
+
+    checkForMobile: () => {
+        var regex = /Mobi|Android/i;
+
+        return regex.test(navigator.userAgent);
     }
 }
