@@ -21,6 +21,8 @@ Exactly the same as for static libraries but with ONE EXTRA STEP:
 
 Add a resource/reference to the .dll file (also tick 'make local copy' if appropriate).
 
+Also be sure to use dllexport/dllimport declarations for functions that need to be exposed, otherwise it will not work.
+
 # DYNAMIC LINKING: 
 
 No including, load using LoadLibrary function with a relative filepath to the .dll file, and use the (slightly more unwieldy) explicit linking method. Remember to use interop-boundary safe variables if needed, and load functions with GetProcAddress.
