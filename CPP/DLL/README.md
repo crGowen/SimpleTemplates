@@ -2,7 +2,7 @@ Two types of linking: Static and dynamic (dynamic is broken up into implicit and
 
 Static is not fit for distribution and is put into the .exe at compile-time. (Also not technically DLL so it shouldn't be in this folder, but whatever). 
 
-Implicit dynamic is very similar to static, but isn't inserted in at compile time - instead at load-time. It is very slightly harder to use but is better for large projects since fixing a bug in the library simply requires redistributing .dll and .lib files, whereas static requires redistributing the .exe.
+Implicit dynamic is very similar to static, but isn't inserted in at compile time - instead at load-time. It is very slightly harder to use but is better for large projects since fixing a bug in a program using the library simply requires only redistributing the .dll file, whereas static requires redistributing the .exe.
 
 Explicit dynamic is the next step up and is inserted at run-time. This is best one resource-wise because you can load and unload what is needed whereever you want them. It also allows you to load .dll's that you might not know the name until run-time (i.e. their names are stored in data files or specified by the user).
 
