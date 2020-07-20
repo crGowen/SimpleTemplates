@@ -1,8 +1,10 @@
-Static/Implicit is not fit for distribution and is compiled into a project at load-time. (Also not technically DLL so it shouldn't be in this folder, but whatever)
+Two types of linking: Static and dynamic (dynamic is broken up into implicit and explicit linking).
 
-Explicit linking is harder to code for on both ends, but allows being distributed as a DLL file.
+Static is not fit for distribution and is put into the .exe at compile-time. (Also not technically DLL so it shouldn't be in this folder, but whatever). 
 
-In most projects, it's much easier just to use a managed DLL system like in C#.
+Implicit dynamic is very similar to static, but isn't inserted in at compile time - instead at load-time. It is very slightly harder to use but is better for large projects since fixing a bug in the library simply requires redistributing .dll and .lib files, whereas static requires redistributing the .exe.
+
+Dynamic is the next step up and is inserted at run-time. This is best one resource-wise because you can load and unload what is needed whereever you want them. It also allows you to load .dll's that you might not know the name until run-time (i.e. their names are stored in data files or specified by the user).
 
 
 # INCLUDING STATIC LIBS in a solution (for visual studio):
@@ -13,9 +15,12 @@ Then go to Linker->General->Additional Library Directories and specify the path,
 
 Finally, go to Linker->Input->Additional Dependencies and add the name of the file containing your library together with its extension (e.g. example_library.lib).
 
+# IMPLICIT DYNAMIC LINKING
+
+Exactly the same as for static libraries but with ONE EXTRA STEP:
+
+Add a resource/reference to the .dll file (also tick 'make local copy' if appropriate).
 
 # DYNAMIC LINKING: 
 
-No including, load using LoadLibrary function with a relative filepath to the .dll file, and use the (slightly more unwieldy) explicit linking method. There is implicit dynamic linking too, where a .lib file is used to show declarations for a .dll, enabling it to be used more like a static library, however this will load all functions at runtime.
-
-For performance it's better to just use explicit linking, it really isn't that much harder just to use interop-boundary safe variables and load functions with GetProcAddress.
+No including, load using LoadLibrary function with a relative filepath to the .dll file, and use the (slightly more unwieldy) explicit linking method. Remember to use interop-boundary safe variables if needed, and load functions with GetProcAddress.
