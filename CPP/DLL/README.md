@@ -4,7 +4,7 @@ Static is not fit for distribution and is put into the .exe at compile-time. (Al
 
 Implicit dynamic is very similar to static, but isn't inserted in at compile time - instead at load-time. It is very slightly harder to use but is better for large projects since fixing a bug in the library simply requires redistributing .dll and .lib files, whereas static requires redistributing the .exe.
 
-Dynamic is the next step up and is inserted at run-time. This is best one resource-wise because you can load and unload what is needed whereever you want them. It also allows you to load .dll's that you might not know the name until run-time (i.e. their names are stored in data files or specified by the user).
+Explicit dynamic is the next step up and is inserted at run-time. This is best one resource-wise because you can load and unload what is needed whereever you want them. It also allows you to load .dll's that you might not know the name until run-time (i.e. their names are stored in data files or specified by the user).
 
 For packaging the installation: in static libs everything is compiled into the .exe file and that is all you distribute (.lib and .h are used to bake the code into the .exe). For dynamic libs you only need to distribute the .dll file (in the case of implicit linking, .lib and .h are used to bake .dll calls into the .exe file).
 
