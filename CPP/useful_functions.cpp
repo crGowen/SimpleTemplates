@@ -1,25 +1,3 @@
-std::vector<std::string> Split(const std::string & input, const std::string & splitter) {
-    std::vector<std::string> result;
-
-    size_t previousPos = 0;
-    size_t sLen = splitter.length();
-    size_t iLen = input.length();
-
-    for (size_t i = 0; i < iLen; ) {
-        if (input[i] == splitter[0] && i + sLen <= iLen && input.substr(i, sLen) == splitter) {
-            if (i != previousPos) result.push_back(input.substr(previousPos, i - previousPos));
-            previousPos = i + sLen;
-            i += sLen;
-        } else {
-            i++;
-        }
-    }
-
-    if (previousPos < input.length() - 1) result.push_back(input.substr(previousPos));
-
-    return result;
-}
-
 void Split(std::vector<std::string> & result, const std::string& input, const std::string& splitter) {
 
     size_t previousPos = 0;
@@ -31,7 +9,8 @@ void Split(std::vector<std::string> & result, const std::string& input, const st
             if (i != previousPos) result.push_back(input.substr(previousPos, i - previousPos));
             previousPos = i + sLen;
             i += sLen;
-        } else {
+        }
+        else {
             i++;
         }
     }
@@ -39,19 +18,10 @@ void Split(std::vector<std::string> & result, const std::string& input, const st
     if (previousPos < input.length() - 1) result.push_back(input.substr(previousPos));
 }
 
-std::string ReduceCharacters(const std::string& input, const std::string& extras = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz\n 0123456789.,%$£^&*+-_=?!/><(){}[]'\"#~@;:") {
-    std::string result = "\0";
-    size_t resPos = 0;
+std::vector<std::string> Split(const std::string& input, const std::string& splitter) {
+    std::vector<std::string> result;
 
-    result.resize(input.length(), '\0');
-
-    for (auto i : input) {
-        for (auto x : extras) {
-            if (i == x) result[resPos++] = i;
-        }
-    }
-
-    result.resize(resPos);
+    Split(result, input, splitter);
 
     return result;
 }
@@ -66,4 +36,12 @@ void ReduceCharactersMutable(std::string& input, const std::string& extras = "AB
     }
 
     input.resize(resPos);
+}
+
+std::string ReduceCharacters(const std::string& input, const std::string& extras = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz\n 0123456789.,%$£^&*+-_=?!/><(){}[]'\"#~@;:") {
+    std::string result = input;
+
+    ReduceCharactersMutable(result, extras);
+
+    return result;
 }
