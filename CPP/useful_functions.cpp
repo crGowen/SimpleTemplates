@@ -26,11 +26,11 @@ std::vector<std::string> Split(const std::string& input, const std::string& spli
     return result;
 }
 
-void ReduceCharacters(std::string& input, const std::string& extras = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz\n 0123456789.,%$£^&*+-_=?!/><(){}[]'\"#~@;:") {
+void ReduceCharacters(std::string& input, const std::string& acceptedChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz\n 0123456789.,%$£^&*+-_=?!/><(){}[]'\"#~@;:") {
     size_t resPos = 0;
 
     for (auto i : input) {
-        for (auto x : extras) {
+        for (auto x : acceptedChars) {
             if (i == x) input[resPos++] = i;
         }
     }
@@ -38,10 +38,10 @@ void ReduceCharacters(std::string& input, const std::string& extras = "ABCDEFGHI
     input.resize(resPos);
 }
 
-std::string GetReducedCharacters(const std::string& input, const std::string& extras = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz\n 0123456789.,%$£^&*+-_=?!/><(){}[]'\"#~@;:") {
+std::string GetReducedCharacters(const std::string& input, const std::string& acceptedChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz\n 0123456789.,%$£^&*+-_=?!/><(){}[]'\"#~@;:") {
     std::string result = input;
 
-    ReduceCharacters(result, extras);
+    ReduceCharacters(result, acceptedChars);
 
     return result;
 }
