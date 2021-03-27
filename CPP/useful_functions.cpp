@@ -5,10 +5,13 @@ std::vector<std::string> Split(const std::string & input, const std::string & sp
     size_t sLen = splitter.length();
     size_t iLen = input.length();
 
-    for (size_t i = 0; i < iLen; i++) {
+    for (size_t i = 0; i < iLen; ) {
         if (input[i] == splitter[0] && i + sLen <= iLen && input.substr(i, sLen) == splitter) {
             if (i != previousPos) result.push_back(input.substr(previousPos, i - previousPos));
             previousPos = i + sLen;
+            i += sLen;
+        } else {
+            i++;
         }
     }
 
@@ -23,10 +26,13 @@ void Split(std::vector<std::string> & result, const std::string& input, const st
     size_t sLen = splitter.length();
     size_t iLen = input.length();
 
-    for (size_t i = 0; i < iLen; i++) {
+    for (size_t i = 0; i < iLen; ) {
         if (input[i] == splitter[0] && i + sLen <= iLen && input.substr(i, sLen) == splitter) {
             if (i != previousPos) result.push_back(input.substr(previousPos, i - previousPos));
             previousPos = i + sLen;
+            i += sLen;
+        } else {
+            i++;
         }
     }
 
