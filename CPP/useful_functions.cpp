@@ -1,0 +1,63 @@
+std::vector<std::string> Split(const std::string & input, const std::string & splitter) {
+    std::vector<std::string> result;
+
+    size_t previousPos = 0;
+    size_t sLen = splitter.length();
+    size_t iLen = input.length();
+
+    for (size_t i = 0; i < iLen; i++) {
+        if (input[i] == splitter[0] && i + sLen <= iLen && input.substr(i, sLen) == splitter) {
+            if (i != previousPos) result.push_back(input.substr(previousPos, i - previousPos));
+            previousPos = i + sLen;
+        }
+    }
+
+    if (previousPos < input.length() - 1) result.push_back(input.substr(previousPos));
+
+    return result;
+}
+
+void Split(std::vector<std::string> & result, const std::string& input, const std::string& splitter) {
+
+    size_t previousPos = 0;
+    size_t sLen = splitter.length();
+    size_t iLen = input.length();
+
+    for (size_t i = 0; i < iLen; i++) {
+        if (input[i] == splitter[0] && i + sLen <= iLen && input.substr(i, sLen) == splitter) {
+            if (i != previousPos) result.push_back(input.substr(previousPos, i - previousPos));
+            previousPos = i + sLen;
+        }
+    }
+
+    if (previousPos < input.length() - 1) result.push_back(input.substr(previousPos));
+}
+
+std::string ReduceCharacters(const std::string& input, const std::string& extras = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz\n 0123456789.,%$£^&*+-_=?!/><(){}[]'\"#~@;:") {
+    std::string result = "\0";
+    size_t resPos = 0;
+
+    result.resize(input.length(), '\0');
+
+    for (auto i : input) {
+        for (auto x : extras) {
+            if (i == x) result[resPos++] = i;
+        }
+    }
+
+    result.resize(resPos);
+
+    return result;
+}
+
+void ReduceCharactersMutable(std::string& input, const std::string& extras = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz\n 0123456789.,%$£^&*+-_=?!/><(){}[]'\"#~@;:") {
+    size_t resPos = 0;
+
+    for (auto i : input) {
+        for (auto x : extras) {
+            if (i == x) input[resPos++] = i;
+        }
+    }
+
+    input.resize(resPos);
+}
