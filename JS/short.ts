@@ -1,4 +1,4 @@
-// shorthand js function declarations
+// shorthand ts function declarations
 
 const short = {
     h: document.head,
@@ -35,5 +35,17 @@ const short = {
         var regex = /Mobi|Android/i;
 
         return regex.test(navigator.userAgent);
+    },
+
+    generator: ( attachTo:Element, html:string, args:any) => {
+        var htmlRes = ``;
+        for (var arg of args) {
+            htmlRes = html;
+            for (var key in arg) {
+                htmlRes = htmlRes.replaceAll(`[>>${key}<<]`, arg[key]);
+            }
+            attachTo.innerHTML += htmlRes;
+        }
     }
+
 }
