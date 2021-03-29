@@ -34,14 +34,24 @@ const short = {
         return regex.test(navigator.userAgent);
     },
 
-    generator: (attachTo, html, args) => {
+    generator: (appendTo, html, args) => {
         var htmlRes = ``;
         for (var arg of args) {
             htmlRes = html;
             for (var key in arg) {
                 htmlRes = htmlRes.replaceAll(`[>>${key}<<]`, arg[key]);
             }
-            attachTo.innerHTML += htmlRes;
+            appendTo.innerHTML += htmlRes;
         }
+    },
+
+    fillWithHtml: async (appendTo, fetchUrl) => {
+
+        let response = await fetch(fetchUrl);
+        let result = await response.text();
+        let parser = new DOMParser();
+        let dom = parser.parseFromString(result, "text/html");
+
+        appendTo.innerHTML += dom.getElementsByTagName("body")[0].innerHTML;
     }
 };
