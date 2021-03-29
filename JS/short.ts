@@ -1,9 +1,9 @@
 // shorthand ts function declarations
 
 const short = {
-    h: document.head,
+    h: () => { return document.head },
 
-    b: document.body,
+    b: () = > { return document.body },
 
     create: (type:string, id:string, classes:string[]) => {
         let c = document.createElement(type);
