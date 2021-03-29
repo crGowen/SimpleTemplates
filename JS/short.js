@@ -1,9 +1,9 @@
 // shorthand js function declarations
 
 const short = {
-    h: document.head,
+    h: () => { return document.head },
 
-    b: document.body,
+    b: () = > { return document.body },
 
     create: (type, id, classes) => {
         var c = document.createElement(type);
