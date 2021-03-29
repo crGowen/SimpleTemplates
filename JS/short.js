@@ -34,12 +34,12 @@ const short = {
         return regex.test(navigator.userAgent);
     },
 
-    generator: (appendTo, html, args) => {
+    generator: (appendTo, html, entries) => {
         var htmlRes = ``;
-        for (var arg of args) {
+        for (var entry of entries) {
             htmlRes = html;
-            for (var key in arg) {
-                htmlRes = htmlRes.replaceAll(`[>>${key}<<]`, arg[key]);
+            for (var key in entry) {
+                htmlRes = htmlRes.replaceAll(`[>>${key}<<]`, entry[key]);
             }
             appendTo.innerHTML += htmlRes;
         }
