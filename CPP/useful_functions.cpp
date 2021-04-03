@@ -51,7 +51,7 @@ std::vector<std::string> Split(const std::string& input, const std::string& spli
     return result;
 }
 
-// repeated instances of a character are condensing into just one occurance... e.g. condensing spaces will remove all double/triple/etc... spaces from the input string
+// repeated instances of a character are condensed into just one occurance... e.g. condensing spaces will remove all double/triple/etc... spaces from the input string
 void CondenseCharacters(std::string& input, const std::string& condensors = "") {
     int foundChar = -1;
     int condenseChar = -1;
