@@ -3,7 +3,7 @@
 const short = {
     h: () => { return document.head },
 
-    b: () = > { return document.body },
+    b: () => { return document.body },
 
     create: (type:string, id:string, classes:string[]) => {
         let c = document.createElement(type);
