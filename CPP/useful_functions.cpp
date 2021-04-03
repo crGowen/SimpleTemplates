@@ -51,7 +51,54 @@ std::vector<std::string> Split(const std::string& input, const std::string& spli
     return result;
 }
 
-void ReduceCharacters(std::string& input, const std::string& acceptedChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz\n 0123456789.,%$£^&*+-_=?!/><(){}[]'\"#~@;:") {
+// repeated instances of a character are condensing into just one occurance... e.g. condensing spaces will remove all double/triple/etc... spaces from the input string
+void CondenseCharacters(std::string& input, const std::string& condensors = "") {
+    int foundChar = -1;
+    int condenseChar = -1;
+    size_t resPos = 0;
+
+    for (auto i : input) {
+        foundChar = -1;
+        for (int x = 0; x < condensors.length(); x++) {
+            if (i == condensors[x]) {
+                foundChar = x;
+            }
+        }
+
+        // we are currently already condensing a character from condensors string
+        if (condenseChar != -1) {
+            if (foundChar != -1) { // current character matches a char from condensors
+                // and its NOT the character we are already condensing
+                if (foundChar != condenseChar) {
+                    // add the character we were condensing and start condensing the next one
+                    input[resPos++] = condensors[condenseChar];
+                    condenseChar = foundChar;
+                } // otherwise it MUST be the one we are still condensing, so do nothing
+            }
+            else { // found no further match from condensors, so we can finish condensing this character
+                input[resPos++] = condensors[condenseChar];
+                input[resPos++] = i;
+                condenseChar = -1;
+            }
+        }
+        else { // we are NOT currently already condensing a character
+            if (foundChar != -1) {
+                // we just found a character to be condensed, so we start condensing
+                condenseChar = foundChar;
+            }
+            else {
+                // havent found a character to be condensed, so just add the character
+                input[resPos++] = i;
+            }
+        }
+
+        
+    }
+
+    input.resize(resPos);
+}
+
+void RemoveCharacters(std::string& input, const std::string& acceptedChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz\n 0123456789.,%$£^&*+-_=?!/><(){}[]'\"#~@;:") {
     size_t resPos = 0;
 
     for (auto i : input) {
@@ -63,10 +110,10 @@ void ReduceCharacters(std::string& input, const std::string& acceptedChars = "AB
     input.resize(resPos);
 }
 
-std::string GetReducedCharacters(const std::string& input, const std::string& acceptedChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz\n 0123456789.,%$£^&*+-_=?!/><(){}[]'\"#~@;:") {
+std::string GetRemovedCharacters(const std::string& input, const std::string& acceptedChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz\n 0123456789.,%$£^&*+-_=?!/><(){}[]'\"#~@;:") {
     std::string result = input;
 
-    ReduceCharacters(result, acceptedChars);
+    RemoveCharacters(result, acceptedChars);
 
     return result;
 }
